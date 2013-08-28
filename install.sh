@@ -188,12 +188,7 @@ function set_path() {
   echo "We've installed the compiler and SDK for you. The compiler and"
   echo "a utility program in the SDK need to be placed into your \$PATH"
   echo "variable, so the shell will know where to find these programs."
-  echo ""
-  echo "We'll set this up, but the settings will only take effect in the"
-  echo "current shell, i.e. won't be set after reboot."
-  
-export PATH=$PATH:${INSTALL_DIR}/anykey-sdk/checksum
-export PATH=$PATH:${INSTALL_DIR}/${ARM_DIR}/bin
+  echo 
 
   echo "You will need to execute the following lines the shell before using"
   echo "the SDK in future:"
@@ -363,7 +358,8 @@ cd $CURRENT_DIR
 
 echo "Done! (You're welcome.)"
 echo
-echo "In order to try out the SDK, change to the directory:"
+echo "In order to try out the SDK, set the PATH correctly"
+echo "as described above, change to the directory:"
 echo "  $INSTALL_DIR/anykey-sdk/examples/blink"
 echo 'and type `make`.'
 echo
