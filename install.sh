@@ -215,6 +215,12 @@ function set_path() {
   if [[ -f ~/.profile ]]; then
     
     echo "If you like, I can also add the above to your .profile"
+    echo
+    echo "This is somewhat experimental, i.e. if you also have a"
+    echo ".bash_profile, aren't using bash or doing one of a million"
+    echo "unforseeable things that we haven't dealt with (we're looking"
+    echo "at you, gentoo users), this may not work! CAVEAT EMPTOR!"
+    echo
     echo "(If you don't know what this means, you should google"
     echo " it or just type Y) :"
     read ADD_TO_PROFILE
