@@ -362,5 +362,11 @@ fi
 cd $CURRENT_DIR
 
 echo "Done! (You're welcome.)"
+echo
+echo "In order to try out the SDK, change to the directory:"
+echo "  $INSTALL_DIR/anykey-sdk/examples/blink"
+echo 'and type `make`.'
+echo
+
 echo "Press ANYKEY to continue..."
 read
