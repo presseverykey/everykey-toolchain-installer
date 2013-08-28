@@ -17,7 +17,7 @@ function check() {
 }
 
 function check_no_die() {
-  if ! type ${1} 2&>1 > /dev/null ; then
+  if ! command -v ${1} 2&>1 > /dev/null ; then
     return 1
   fi
   return 0
@@ -105,11 +105,24 @@ function get_arm() {
     echo "(We're probably here because our script screwed up previously"
     echo " so we don't really know what's going on and will just unpack"
     echo " the compiler again, clobbering any previously unpacked"
-    echo " compiler. If you don't want this, just kill the script now"
-    echo " with Ctl-C or hit enter to continue.)"
+    echo " compiler."
+    echo " Press S to skip unpacking, Q to quit the script or anything"
+    echo " else to continue" 
     echo
     echo "If you don't know what this means, hit enter"
-    read
+    read WHAT_TO_DO
+
+    if [[ ${WHAT_TO_DO}X == "SX" ]] ; then
+      echo
+      return
+    else
+      if [[ ${WHAT_TO_DO}X == "QX" ]] ; then
+        echo "Quitting! Sorry things didn't work out ... "
+        cd $CURRENT_DIR
+        exit 1
+      fi
+    fi
+
   fi
 
   echo "Unpacking ..."
@@ -196,6 +209,7 @@ function set_path() {
   echo "  #############################################################"
   echo "  # END OF ARM/ANYKEY PATH ADJUSTMENTS                        #"
   echo "  #############################################################"
+  echo
 
   if [[ -f ~/.profile ]]; then
     
@@ -226,6 +240,7 @@ function set_path() {
       echo "#############################################################" >> ~/.profile
       echo "# END OF ARM/ANYKEY PATH ADJUSTMENTS                        #" >> ~/.profile
       echo "#############################################################" >> ~/.profile
+      echo                                                                 >> ~/.profile
 
       echo "PATH adjustments were made to your '.profile'. You may need to"
       echo 'log in again or run `bash --login` for these settings to take'
