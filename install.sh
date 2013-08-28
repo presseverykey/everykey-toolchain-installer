@@ -193,7 +193,8 @@ function set_path() {
 
 
 
-  echo "You will need to run the following before using the SDK:\n"
+  echo "You will need to run the following before using the SDK:"
+  echo
 
   echo "  #############################################################"
   echo "  # Adjust the PATH for the ARM toolchain (Anykey)            #"
@@ -262,7 +263,31 @@ function set_path() {
 # the cygwin/windows/git combination isn't quite compatible, so for windows users,
 # we delete all the symlinks in the examples an copy in the necessary files...
 function urgh_deal_with_symlinks() {
-  echo "not yet implemented"
+  echo "The SDK makes heavy use of symbolic links. Unfortunately, the combination"
+  echo "of cygwin, git and windows doesn't really like that ..."
+  echo "I can try to replace all symlinks in the SDK with the actual files now"
+  echo "or you can do this yourself."
+  echo "Press S to skip, just hit enter to replace the symlinks."
+  
+  read WHAT_TO_DO
+  if [[ ${WHAT_TO_DO}X == "SX" ]] ; then
+    echo
+    return
+  fi
+
+  for any_file in makefile lp1343.ld ; do
+    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+      rm $ff
+      cp $INSTALL_DIR/anykey-sdk/anykey/${any_file} $ff
+    done
+  done
+
+  for any_dir in anykey anykey_usb ; do
+    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_dir} -type l`; do
+      rm -rf $ff
+      cp -r $INSTALL_DIR/anykey-sdk/${any_dir} $ff 
+    done
+  done
 }
 
 if check_no_die clear ; then
