@@ -231,7 +231,7 @@ function set_path() {
 # the cygwin/windows/git combination isn't quite compatible, so for windows users,
 # we delete all the symlinks in the examples an copy in the necessary files...
 function urgh_deal_with_symlinks() {
-
+  echo "not yet implemented"
 }
 
 
