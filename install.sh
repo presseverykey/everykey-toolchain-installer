@@ -275,7 +275,7 @@ function urgh_deal_with_symlinks() {
     return
   fi
 
-  for any_file in makefile lp1343.ld ; do
+  for any_file in makefile lpc1343.ld ; do
     for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
       rm $ff
       cp $INSTALL_DIR/anykey-sdk/anykey/${any_file} $ff
