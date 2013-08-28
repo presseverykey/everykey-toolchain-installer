@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Welcome! This is our lame attempt at creating an installer pacakge
 # for the Press Any Key Toolchain. It should alert you to any missing
