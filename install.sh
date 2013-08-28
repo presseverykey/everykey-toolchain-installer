@@ -189,11 +189,14 @@ function set_path() {
   echo "a utility program in the SDK need to be placed into your \$PATH"
   echo "variable, so the shell will know where to find these programs."
   echo ""
+  echo "We'll set this up, but the settings will only take effect in the"
+  echo "current shell, i.e. won't be set after reboot."
   
+export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum
+export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin
 
-
-
-  echo "You will need to run the following before using the SDK:"
+  echo "You will need to execute the following lines the shell before using"
+  echo "the SDK in future:"
   echo
 
   echo "  #############################################################"
@@ -250,7 +253,7 @@ function set_path() {
       echo                                                                 >> ~/.profile
 
       echo "PATH adjustments were made to your '.profile'. You may need to"
-      echo 'log in again or run `bash --login` for these settings to take'
+      echo 'log in again or run `exec bash --login` for these settings to take'
       echo "effect"
     else
       echo "Leaving your .profile alone... Don't forget to manually"
