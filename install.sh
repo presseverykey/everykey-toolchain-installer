@@ -282,12 +282,28 @@ function urgh_deal_with_symlinks() {
     done
   done
 
+  for any_file in anypio.h anypio.c ; do
+    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+      rm $ff
+      cp $INSTALL_DIR/anykey-sdk/libs/anypio/${any_file} $ff
+    done
+  done
+
+  for any_file in anycdc.h anycdc.c ; do
+    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+      rm $ff
+      cp $INSTALL_DIR/anykey-sdk/libs/anycdc/${any_file} $ff
+    done
+  done
+
   for any_dir in anykey anykey_usb ; do
     for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_dir} -type l`; do
       rm -rf $ff
       cp -r $INSTALL_DIR/anykey-sdk/${any_dir} $ff 
     done
   done
+
+  
 }
 
 if check_no_die clear ; then
