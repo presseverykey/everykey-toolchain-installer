@@ -127,7 +127,7 @@ function get_arm() {
 
   echo "Unpacking ..."
   
-  case $1 in 
+  case $OS in 
     "WIN")
       check "unzip"
       unzip $ARM_ARCHIVE
@@ -166,7 +166,7 @@ function link_proper_checksum() {
     # TODO test $?, explode if compile fails ...
   else
 
-    case OS in
+    case $OS in
       "OSX")
         CHECKSUM_SUFFIX="mac"
         ;;
