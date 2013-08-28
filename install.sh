@@ -192,8 +192,8 @@ function set_path() {
   echo "We'll set this up, but the settings will only take effect in the"
   echo "current shell, i.e. won't be set after reboot."
   
-export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum
-export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin
+export PATH=$PATH:${INSTALL_DIR}/anykey-sdk/checksum
+export PATH=$PATH:${INSTALL_DIR}/${ARM_DIR}/bin
 
   echo "You will need to execute the following lines the shell before using"
   echo "the SDK in future:"
