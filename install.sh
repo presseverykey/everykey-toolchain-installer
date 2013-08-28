@@ -177,27 +177,25 @@ function set_path() {
   echo "variable, so the shell will know where to find these programs."
   echo ""
   
-  SET_PATH=""
-  SET_PATH="${SET_PATH}#############################################################\n"
-  SET_PATH="${SET_PATH}# Adjust the PATH for the ARM toolchain (Anykey)            #\n"
-  SET_PATH="${SET_PATH}# either add this to your .profile or run these commands    #\n"
-  SET_PATH="${SET_PATH}# manually before you compile firmware                      #\n"
-  SET_PATH="${SET_PATH}# if you find this in your .profile and don't want it there #\n"
-  SET_PATH="${SET_PATH}# just delete up to the next comment block                  #\n"
-  SET_PATH="${SET_PATH}#############################################################\n"
-  SET_PATH="${SET_PATH}\n"
-  SET_PATH="${SET_PATH}export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum\n"
-  SET_PATH="${SET_PATH}export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin\n"
-  SET_PATH="${SET_PATH}\n"
-  SET_PATH="${SET_PATH}#############################################################\n"
-  SET_PATH="${SET_PATH}# END OF ARM/ANYKEY PATH ADJUSTMENTS                        #\n"
-  SET_PATH="${SET_PATH}#############################################################\n"
 
 
 
   echo "You will need to run the following before using the SDK:\n"
 
-  echo "$SET_PATH"
+  echo "  #############################################################"
+  echo "  # Adjust the PATH for the ARM toolchain (Anykey)            #"
+  echo "  # either add this to your .profile or run these commands    #"
+  echo "  # manually before you compile firmware                      #"
+  echo "  # if you find this in your .profile and don't want it there #"
+  echo "  # just delete up to the next comment block                  #"
+  echo "  #############################################################"
+  echo 
+  echo "  export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum"
+  echo "  export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"
+  echo 
+  echo "  #############################################################"
+  echo "  # END OF ARM/ANYKEY PATH ADJUSTMENTS                        #"
+  echo "  #############################################################"
 
   if [[ -f ~/.profile ]]; then
     
@@ -210,6 +208,24 @@ function set_path() {
     if [[ ${ADD_TO_PROFILE}X == "YX" ]]; then
       echo >> ~/.profile
       echo "$SET_PATH" >> ~/.profile
+
+      # Have to admit, it's a bit lazy to copy and paste here, but I couldn't
+      # figure out how to get cygwin to handle line endings properly ...
+
+      echo "#############################################################" >> ~/.profile
+      echo "# Adjust the PATH for the ARM toolchain (Anykey)            #" >> ~/.profile
+      echo "# either add this to your .profile or run these commands    #" >> ~/.profile
+      echo "# manually before you compile firmware                      #" >> ~/.profile
+      echo "# if you find this in your .profile and don't want it there #" >> ~/.profile
+      echo "# just delete up to the next comment block                  #" >> ~/.profile
+      echo "#############################################################" >> ~/.profile
+      echo                                                                 >> ~/.profile
+      echo "export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum"         >> ~/.profile
+      echo "export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"              >> ~/.profile
+      echo                                                                 >> ~/.profile
+      echo "#############################################################" >> ~/.profile
+      echo "# END OF ARM/ANYKEY PATH ADJUSTMENTS                        #" >> ~/.profile
+      echo "#############################################################" >> ~/.profile
 
       echo "PATH adjustments were made to your '.profile'. You may need to"
       echo 'log in again or run `bash --login` for these settings to take'
