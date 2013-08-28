@@ -234,8 +234,10 @@ function urgh_deal_with_symlinks() {
   echo "not yet implemented"
 }
 
+if check_no_die clear ; then
+ clear
+fi
 
-clear
 echo "Welcome to the Anykey Toolchain Installer!"
 
 check_os
