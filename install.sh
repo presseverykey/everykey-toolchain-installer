@@ -17,7 +17,7 @@ function check() {
 }
 
 function check_no_die() {
-  if ! command -v ${1} 2&>1 > /dev/null ; then
+  if ! command -v ${1} 2>&1 > /dev/null ; then
     return 1
   fi
   return 0
@@ -64,10 +64,9 @@ function set_download_cmd() {
 
 # Download the GNU ARM embedded compilers. The URLs contained with here
 # need to be updated periodically.
-
-ARM_DIR="gcc-arm-none-eabi-4_7-2013q2"
-ARM_ARCHIVE="${ARM_DIR}-20130614-"
-ARM_NONE_URL='https://launchpad.net/gcc-arm-embedded/4.7/4.7-2013-q2-update/+download/'
+ARM_DIR="gcc-arm-none-eabi-4_8-2014q1"
+ARM_ARCHIVE="${ARM_DIR}-20140314-"
+ARM_NONE_URL='https://launchpad.net/gcc-arm-embedded/4.8/4.8-2014-q1-update/+download/'
 
 function get_arm() {
 
@@ -142,6 +141,8 @@ function get_arm() {
   echo "... done\n"
 }
 
+REPO_BASENAME='everykey-sdk'
+
 function check_out_repo() {
   echo "Checking out the SDK files from github..."
   cd $INSTALL_DIR
@@ -149,7 +150,7 @@ function check_out_repo() {
     sleep 0.25
     echo "It seems that the SDK was already checked out."
   else
-    git clone https://github.com/anykey0xde/anykey-sdk.git
+    git clone git@github.com:presseverykey/${REPO_BASENAME}.git
   fi
   echo "... done\n"
 }
@@ -158,7 +159,7 @@ function link_proper_checksum() {
 
   # check for gcc and compile if present! 
   
-  CHECKSUM_DIR="$INSTALL_DIR/anykey-sdk/checksum"
+  CHECKSUM_DIR="$INSTALL_DIR/${REPO_BASENAME}/checksum"
 
   if check_no_die "gcc"; then
     cd $CHECKSUM_DIR
@@ -202,7 +203,7 @@ function set_path() {
   echo "  # just delete up to the next comment block                  #"
   echo "  #############################################################"
   echo 
-  echo "  export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum"
+  echo "  export PATH=\$PATH:${INSTALL_DIR}/${REPO_BASENAME}/checksum"
   echo "  export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"
   echo 
   echo "  #############################################################"
@@ -239,7 +240,7 @@ function set_path() {
       echo "# just delete up to the next comment block                  #" >> ~/.profile
       echo "#############################################################" >> ~/.profile
       echo                                                                 >> ~/.profile
-      echo "export PATH=\$PATH:${INSTALL_DIR}/anykey-sdk/checksum"         >> ~/.profile
+      echo "export PATH=\$PATH:${INSTALL_DIR}/${REPO_BASENAME}/checksum"       >> ~/.profile
       echo "export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"              >> ~/.profile
       echo                                                                 >> ~/.profile
       echo "#############################################################" >> ~/.profile
@@ -280,30 +281,30 @@ function urgh_deal_with_symlinks() {
   fi
 
   for any_file in makefile lpc1343.ld ; do
-    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/anykey-sdk/anykey/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/anykey/${any_file} $ff
     done
   done
 
   for any_file in anypio.h anypio.c ; do
-    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/anykey-sdk/libs/anypio/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/libs/anypio/${any_file} $ff
     done
   done
 
   for any_file in anycdc.h anycdc.c ; do
     for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/anykey-sdk/libs/anycdc/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/libs/anycdc/${any_file} $ff
     done
   done
 
   for any_dir in anykey anykey_usb ; do
-    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_dir} -type l`; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_dir} -type l`; do
       rm -rf $ff
-      cp -r $INSTALL_DIR/anykey-sdk/${any_dir} $ff 
+      cp -r $INSTALL_DIR/${REPO_BASENAME}/${any_dir} $ff 
     done
   done
 
@@ -360,9 +361,9 @@ echo "Done! (You're welcome.)"
 echo
 echo "In order to try out the SDK, set the PATH correctly"
 echo "as described above, change to the directory:"
-echo "  $INSTALL_DIR/anykey-sdk/examples/blink"
+echo "  $INSTALL_DIR/${REPO_BASENAME}/examples/blink"
 echo 'and type `make`.'
 echo
 
-echo "Press ANYKEY to continue..."
+echo "Press EVERYKEY to continue..."
 read
