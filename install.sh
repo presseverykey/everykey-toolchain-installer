@@ -146,11 +146,11 @@ REPO_BASENAME='everykey-sdk'
 function check_out_repo() {
   echo "Checking out the SDK files from github..."
   cd $INSTALL_DIR
-  if [[ -d anykey-sdk ]]; then
+  if [[ -d $REPO_BASENAME ]]; then
     sleep 0.25
     echo "It seems that the SDK was already checked out."
   else
-    git clone git@github.com:presseverykey/${REPO_BASENAME}.git
+    git clone  https://github.com/presseverykey/${REPO_BASENAME}.git
   fi
   echo "... done\n"
 }
