@@ -64,9 +64,10 @@ function set_download_cmd() {
 
 # Download the GNU ARM embedded compilers. The URLs contained with here
 # need to be updated periodically.
-ARM_DIR="gcc-arm-none-eabi-4_8-2014q2"
-ARM_ARCHIVE="${ARM_DIR}-20140609-"
-ARM_NONE_URL='https://launchpad.net/gcc-arm-embedded/4.8/4.8-2014-q2-update/+download/'
+# https://launchpad.net/gcc-arm-embedded/4.9/4.9-2014-q4-major/+download/gcc-arm-none-eabi-4_9-2014q4-20141203-mac.tar.bz2
+ARM_DIR="gcc-arm-none-eabi-4_9-2014q4"
+ARM_ARCHIVE="${ARM_DIR}-20141203-"
+ARM_NONE_URL='https://launchpad.net/gcc-arm-embedded/4.9/4.9-2014-q4-major/+download'
 
 function get_arm() {
 
