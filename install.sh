@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Welcome! This is our lame attempt at creating an installer pacakge
-# for the Press Any Key Toolchain. It should alert you to any missing
+# for the Press Every Key Toolchain. It should alert you to any missing
 # packages which we can't install automatically, download the compiler
 # and check out our SDK from github and get everything ready for you.
 
@@ -197,7 +197,7 @@ function set_path() {
   echo
 
   echo "  #############################################################"
-  echo "  # Adjust the PATH for the ARM toolchain (Anykey)            #"
+  echo "  # Adjust the PATH for the ARM toolchain                     #"
   echo "  # either add this to your .profile or run these commands    #"
   echo "  # manually before you compile firmware                      #"
   echo "  # if you find this in your .profile and don't want it there #"
@@ -208,7 +208,7 @@ function set_path() {
   echo "  export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"
   echo 
   echo "  #############################################################"
-  echo "  # END OF ARM/ANYKEY PATH ADJUSTMENTS                        #"
+  echo "  # END OF ARM/EVERYKEY PATH ADJUSTMENTS                        #"
   echo "  #############################################################"
   echo
 
@@ -234,7 +234,7 @@ function set_path() {
       # figure out how to get cygwin to handle line endings properly ...
 
       echo "#############################################################" >> ~/.profile
-      echo "# Adjust the PATH for the ARM toolchain (Anykey)            #" >> ~/.profile
+      echo "# Adjust the PATH for the ARM toolchain                     #" >> ~/.profile
       echo "# either add this to your .profile or run these commands    #" >> ~/.profile
       echo "# manually before you compile firmware                      #" >> ~/.profile
       echo "# if you find this in your .profile and don't want it there #" >> ~/.profile
@@ -245,7 +245,7 @@ function set_path() {
       echo "export PATH=\$PATH:${INSTALL_DIR}/${ARM_DIR}/bin"              >> ~/.profile
       echo                                                                 >> ~/.profile
       echo "#############################################################" >> ~/.profile
-      echo "# END OF ARM/ANYKEY PATH ADJUSTMENTS                        #" >> ~/.profile
+      echo "# END OF ARM/EVERYKEY PATH ADJUSTMENTS                      #" >> ~/.profile
       echo "#############################################################" >> ~/.profile
       echo                                                                 >> ~/.profile
 
@@ -316,7 +316,7 @@ if check_no_die clear ; then
  clear
 fi
 
-echo "Welcome to the Anykey Toolchain Installer!"
+echo "Welcome to the Everykey Toolchain Installer!"
 
 check_os
 check "git"
