@@ -281,31 +281,31 @@ function urgh_deal_with_symlinks() {
     return
   fi
 
-  for any_file in makefile lpc1343.ld ; do
-    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_file} -type l` ; do
+  for a_file in makefile lpc1343.ld ; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${a_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/${REPO_BASENAME}/anykey/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/everykey/${a_file} $ff
     done
   done
 
-  for any_file in anypio.h anypio.c ; do
-    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_file} -type l` ; do
+  for a_file in everypio.h everypio.c ; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${a_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/${REPO_BASENAME}/libs/anypio/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/libs/everypio/${a_file} $ff
     done
   done
 
-  for any_file in anycdc.h anycdc.c ; do
-    for ff in `find $INSTALL_DIR/anykey-sdk -name ${any_file} -type l` ; do
+  for a_file in everycdc.h everycdc.c ; do
+    for ff in `find $INSTALL_DIR/everykey-sdk -name ${a_file} -type l` ; do
       rm $ff
-      cp $INSTALL_DIR/${REPO_BASENAME}/libs/anycdc/${any_file} $ff
+      cp $INSTALL_DIR/${REPO_BASENAME}/libs/everycdc/${a_file} $ff
     done
   done
 
-  for any_dir in anykey anykey_usb ; do
-    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${any_dir} -type l`; do
+  for a_dir in everykey everykey_usb ; do
+    for ff in `find $INSTALL_DIR/${REPO_BASENAME} -name ${a_dir} -type l`; do
       rm -rf $ff
-      cp -r $INSTALL_DIR/${REPO_BASENAME}/${any_dir} $ff 
+      cp -r $INSTALL_DIR/${REPO_BASENAME}/${a_dir} $ff 
     done
   done
 

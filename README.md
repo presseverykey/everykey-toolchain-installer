@@ -1,7 +1,7 @@
 #Toolchain Installer
 
 This is our lame attempt at creating an installer pacakge
-for the Press Any Key Toolchain. It should alert you to any missing
+for the Press Every Key Toolchain. It should alert you to any missing
 packages which we can't install automatically, download the compiler
 and check out our SDK from github and get everything ready for you.
 
